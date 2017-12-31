@@ -6,6 +6,7 @@ var connection = mysql.createConnection({
   password : 'root',
   database : 'TIC-REST'
 });
+var db = mysql(connection);
 
 connection.connect();
 
