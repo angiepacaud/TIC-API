@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var connection = require('../views/queries');
+var db = require('../views/queries');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -10,20 +10,8 @@ router.get('/', function(req, res, next) {
 
 // module.exports = router;
 
-router.get('/api', function(req, res, next){
-	
-});
-// app.use('/api', router);
+router.get('/api/domain', db.getAllDomain);
+router.get('/api', db.getAllTranslation);
 
-// router.route('/domains')
-// .get(function(req, res){
-// 	Domain.find(function(err,domains){
-// 		if (err)
-// 			res.send(err);
-// 		res.json(domains);
-// 	});
-// });
-
- router.get('/api/domains', db.getAllDomain);
 
 module.exports = router;

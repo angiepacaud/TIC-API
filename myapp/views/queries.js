@@ -1,44 +1,41 @@
 var mysql      = require('mysql');
-var connection = mysql.createConnection({
+var db = mysql.createPool({
   host     : 'localhost',
   user     : 'root',
-  password : '12341234',
+  password : 'root',
   database : 'TIC-REST'
 });
-
-var db = mysql(connection);
-
-module.exports=connection;
-
-// connection.connect();
-
-// connection.query(function(err) {
-//   if (err) throw err;
-//   console.log('Tu es connecté :p');
-// });
-
-// connection.end();
-
+ 
 
 
 // add query functions
 
 function getAllDomain(req, res, next) {
-  db.any('select * from domain__domain')
-    .then(function (data) {
-      res.status(200)
-        .json({
-          status: 'success',
-          data: data,
-          message: 'Retrieved ALL users.'
-        });
-    })
-    .catch(function (err) {
-      return next(err);
-    });
+  return db.query('select * from domain', function(err, rows) {
+    console.log(res[0]);
+    res.status(200)
+      .json({
+        status: 'success',
+        data: rows,
+        message: 'Retrieved all domains.'
+      });
+  });    
+}
+
+function getAllTranslation(req, res, next) {
+  return db.query('select * from translation', function (err, rows) {
+    console.log(res[0]);
+    res.status(200)
+      .json({
+        status: 'success',
+        data: rows,
+        message: 'Retrieved all translations.'
+      });
+  });
 }
 
 module.exports = {
-	getAllDomain:getAllDomain
+	getAllDomain:getAllDomain,
+  getAllTranslation: getAllTranslation
 	
 };
