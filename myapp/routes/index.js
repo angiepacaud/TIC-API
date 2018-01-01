@@ -10,8 +10,10 @@ router.get('/', function(req, res, next) {
 
 // module.exports = router;
 
-
-app.use('/api', router);
+router.get('/api', function(req, res, next){
+	
+});
+// app.use('/api', router);
 
 // router.route('/domains')
 // .get(function(req, res){
@@ -22,6 +24,6 @@ app.use('/api', router);
 // 	});
 // });
 
-router.get('/api/domains', db.getAllDomain);
+ router.get('/api/domains', db.getAllDomain);
 
 module.exports = router;

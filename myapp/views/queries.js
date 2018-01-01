@@ -6,6 +6,8 @@ var connection = mysql.createConnection({
   database : 'TIC-REST'
 });
 
+var db = mysql(connection);
+
 module.exports=connection;
 
 // connection.connect();
