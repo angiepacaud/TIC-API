@@ -54,8 +54,20 @@ function getAllDomainById(req, res, next) {
   });    
 }
 
+// function getAllTranslation(req, res, next) {
+//   return db.query('select * from translation', function (err, rows) {
+//     console.log(res[0]);
+//     res.status(200)
+//       .json({
+//         status: 'success',
+//         data: rows,
+//         message: 'Retrieved all translations.'
+//       });
+//   });
+// }
+
 function getAllTranslation(req, res, next) {
-  return db.query('select * from translation', function (err, rows) {
+  return db.query('SELECT translation.id, translation.`key`, translation_to_lang.value, lang.code FROM translation INNER join translation_to_lang INNER join lang on lang.id_lang = translation_to_lang.lang_id INNER JOIN domain on domain.id = translation.domain_id WHERE domain.id ='+ req.params.id, function (err, rows) {
     console.log(res[0]);
     res.status(200)
       .json({
@@ -67,8 +79,12 @@ function getAllTranslation(req, res, next) {
 }
 
 module.exports = {
+  //GET function
 	getAllDomain:getAllDomain,
   getAllDomainById:getAllDomainById,
-  getAllTranslation: getAllTranslation
-	
+  getAllTranslationById:getAllTranslationById,
+  // getAllTranslation:getAllTranslation
+
+  //POST function
+	postAllTranslation:postAllTranslation
 };
