@@ -10,7 +10,7 @@ var db = mysql.createPool({
 // add query functions
 
 function getAllDomain(req, res, next) { 
-  return db.query('select * from domain', function(err, rows) {
+  return db.query('select id, name, description from domain', function(err, rows) {
     console.log(res[0]);
     res.status(200)
       .json({
@@ -21,8 +21,28 @@ function getAllDomain(req, res, next) {
   });    
 }
 
+// function getAllDomainById(req, res, next) {
+//   return db.query('select * from domain where id='+ req.params.id, function(err, rows) {
+//     console.log(res[0]);
+//     if(err){
+//       res.status(err)
+//       .json({
+//       status: 'error',  
+//       message: "Not Found"
+//     });
+//     } else{ 
+//     res.status(200)
+//       .json({
+//         status: 'success',
+//         data: rows,
+//         message: 'Retrieved domains Id.'
+//       });
+//     }
+//   });    
+// }
+
 function getAllDomainById(req, res, next) {
-  return db.query('select * from domain where id='+ req.params.id, function(err, rows) {
+  return db.query('select user.username, domain.* , lang.* from `user` inner join domain on domain.user_id = `user`.id inner join domain_to_lang on domain_to_lang.domain_id = domain.id inner join lang on lang.id_lang = domain_to_lang.lang_id where domain.id='+ req.params.id, function(err, rows) {
     console.log(res[0]);
     res.status(200)
       .json({
@@ -30,6 +50,7 @@ function getAllDomainById(req, res, next) {
         data: rows,
         message: 'Retrieved domains Id.'
       });
+    
   });    
 }
 
