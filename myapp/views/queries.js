@@ -7,7 +7,7 @@ var db = mysql.createPool({
 });
 
 
-// add query functions
+/* add query functions */
 
 function getAllDomain(req, res, next) { 
   return db.query('select id, name, description from domain', function(err, rows) {
@@ -66,7 +66,7 @@ function getAllDomainById(req, res, next) {
 //   });
 // }
 
-function getAllTranslation(req, res, next) {
+function getAllTranslationById(req, res, next) {
   return db.query('SELECT translation.id, translation.`key`, translation_to_lang.value, lang.code FROM translation INNER join translation_to_lang INNER join lang on lang.id_lang = translation_to_lang.lang_id INNER JOIN domain on domain.id = translation.domain_id WHERE domain.id ='+ req.params.id, function (err, rows) {
     console.log(res[0]);
     res.status(200)
@@ -78,13 +78,29 @@ function getAllTranslation(req, res, next) {
   });
 }
 
+function postAllTranslation(req, res, next) {
+  return db.query('insert into translation (key, domain_id) values (--, )', function (err, rows) {
+    console.log(res[0]);
+    res.status(200)
+      .json({
+        status: 'success',
+        data: rows,
+        message: 'Retrieved all translations.'
+      });
+  });
+}
+
 module.exports = {
-  //GET function
+  /* GET function */
 	getAllDomain:getAllDomain,
   getAllDomainById:getAllDomainById,
   getAllTranslationById:getAllTranslationById,
   // getAllTranslation:getAllTranslation
 
-  //POST function
+  /* POST function */
 	postAllTranslation:postAllTranslation
+
+  /* PUT function */
+
+  /* DELETE function */
 };

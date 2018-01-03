@@ -7,14 +7,19 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-// module.exports = router;
+/* GET route */
 
 router.get('/api/domain', db.getAllDomain);
 router.get('/api/domain/:id', db.getAllDomainById);
 router.get('/api/domain/:id/translation', db.getAllTranslationById);
 // router.get('/api/translation', db.getAllTranslation);
 
-// POST route
-router.post();
+/* POST route */
+
+// router.post('/api/domain/:id/translation', db.postAllTranslation);
+
+/* PUT route */
+
+/* DELETE route */
 
 module.exports = router;
