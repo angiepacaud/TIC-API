@@ -15,7 +15,7 @@ router.get('/api/domain/:id/translation', db.getAllTranslationById);
 // router.get('/api/translation', db.getAllTranslation);
 
 /* POST route */
-
+router.post('/api/domain/:id/translation', db.postAllTranslation);
 // router.post('/api/domain/:id/translation', db.postAllTranslation);
 
 /* PUT route */
