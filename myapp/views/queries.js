@@ -7,7 +7,6 @@ var db = mysql.createPool({
 });
 var db = mysql(connection);
 
-
 /* add query functions */
 
 function getAllDomain(req, res, next) { 
@@ -80,17 +79,18 @@ function getAllTranslationById(req, res, next) {
 }
 
 function postAllTranslation(req, res, next) {
-  return db.query('insert into translation (id, key, domain_id) values (8, --see_you--, 7) '
-   return db.query ('insert into translation_to_lang (value, lang_id) values (a_plus, 1) (see_you_later, 2)', function (err, rows) {
+  return db.query('UPDATE translation_to_lang SET value = 'A_plus' WHERE id = 8 AND lang_id = 1, (SELECT translation.id, translation.`key`, translation_to_lang.value, lang.code FROM translation INNER join translation_to_lang INNER join lang on lang.id_lang = translation_to_lang.lang_id INNER JOIN domain on domain.id = translation.domain_id WHERE domain.id AND translation.`key` = '--bye--')', function (err, rows) {
     console.log(res[0]);
     res.status(200)
       .json({
         status: 'success',
         data: rows,
-        message: 'Retrieved all translations.'
+        message: 'Modified translations.'
       });
   });
 }
+
+// requete afficge key bye return db.query('SELECT translation.id, translation.`key`, translation_to_lang.value, lang.code FROM translation INNER join translation_to_lang INNER join lang on lang.id_lang = translation_to_lang.lang_id INNER JOIN domain on domain.id = translation.domain_id WHERE domain.id AND translation.`key` = '--bye--'', function (err, rows) //
 
 module.exports = {
   /* GET function */
