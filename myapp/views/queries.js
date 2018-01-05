@@ -80,7 +80,8 @@ function getAllTranslationById(req, res, next) {
 }
 
 function postAllTranslation(req, res, next) {
-  return db.query('insert into translation (id, key, domain_id) values (8, --see_you--, 7) insert into translation_to_lang (value, lang_id) values (a_plus, 1) (see_you_later, 2)', function (err, rows) {
+  return db.query('insert into translation (id, key, domain_id) values (8, --see_you--, 7) '
+   return db.query ('insert into translation_to_lang (value, lang_id) values (a_plus, 1) (see_you_later, 2)', function (err, rows) {
     console.log(res[0]);
     res.status(200)
       .json({
