@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize('TIC-REST', 'root', '12341234', {
+const sequelize = new Sequelize('TIC-REST', 'root', 'root', {
   host: 'localhost',
   port: '8000',
   dialect: 'mysql',

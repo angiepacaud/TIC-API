@@ -16,10 +16,12 @@ router.get('/api/domain/:id/translation', db.getAllTranslationById);
 
 /* POST route */
 router.post('/api/domain/:id/translation', db.postAllTranslation);
-// router.post('/api/domain/:id/translation', db.postAllTranslation);
 
-/* PUT route */
 
-/* DELETE route */
+// /* PUT route */
+// router.put('/api/domain/:id/translation/:key', db.putAllTranslation);
+
+// /* DELETE route */
+// router.delete('/api/domain/:id/translation/:key', db.deleteAllTranslation);
 
 module.exports = router;
