@@ -128,7 +128,7 @@ function postAllTranslation(req, res, next) {
 }
 
 // function putAllTranslation(req, res, next) {
-//   return db.query('INSERT INTO translation_to_lang (value) VALUES (je_ne_sais_pas) WHERE id = 8 AND lang_id = 3, (SELECT translation.id, translation.`key`, translation_to_lang.value, lang.code FROM translation INNER join translation_to_lang INNER join lang on lang.id_lang = translation_to_lang.lang_id INNER JOIN domain on domain.id = translation.domain_id WHERE domain.id AND translation.`key` = '--bye--')', function (err, rows) {
+//   return db.query('UPDATE `translation_to_lang` SET `value` = 'fycfcfd' WHERE `translation_to_lang`.`lang_id` = '1' AND `translation_to_lang`.`translation_id` = 9 (SELECT translation.id, translation.`key`, translation_to_lang.value, lang.code FROM translation INNER join translation_to_lang INNER join lang on lang.id_lang = translation_to_lang.lang_id INNER JOIN domain on domain.id = translation.domain_id WHERE domain.id AND translation.`key` = '--bye--')', function (err, rows) {
 //     console.log(res[0]);
 //     res.status(200)
 //       .json({
