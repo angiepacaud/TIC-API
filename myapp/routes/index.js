@@ -12,6 +12,8 @@ router.get('/', function(req, res, next) {
 router.get('/api/domain', db.getAllDomain);
 router.get('/api/domain/:id', db.getAllDomainById);
 router.get('/api/domain/:id/translation', db.getAllTranslationById);
+
+router.get('/api/domain/:id', db.getDomainAuto);
 // router.get('/api/translation', db.getAllTranslation);
 
 /* POST route */
