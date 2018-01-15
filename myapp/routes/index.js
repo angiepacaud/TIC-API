@@ -21,9 +21,9 @@ router.post('/api/domain/:id/translation', db.postAllTranslation);
 
 
 // /* PUT route */
-// router.put('/api/domain/:id/translation/:key', db.putAllTranslation);
+ router.put('/api/domain/:id/translation/:key', db.putAllTranslation);
 
 // /* DELETE route */
-// router.delete('/api/domain/:id/translation/:key', db.deleteAllTranslation);
+ router.delete('/api/domain/:id/translation/:key', db.deleteTranslation);
 
 module.exports = router;

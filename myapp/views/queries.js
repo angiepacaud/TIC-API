@@ -127,6 +127,27 @@ var requiredFields2 = ['lang_id', 'translation_id', 'value'];
   return false;
 }
 
+// function checkvalideform(array, dataform){
+//     var i = 0;
+//     var arrayCopy = array;
+//     if(dataform){
+//      for(var key in dataform){
+//         if(key == "key" && dataform.key.length == 1)
+//         {
+//           i += 1;
+//         }
+          
+//         if(!arrayCopy.includes(key))
+//           return false;
+//       }
+//       if(i == 1)
+//         return true;
+//       else
+//         return false;
+//     }
+//   return false;
+// }
+
 function putAllTranslation(req, res, next) {
   var requiredFields2 = ['lang_id', 'translation_id', 'value'];
   console.log(checkvalideform(requiredFields, req.body));
@@ -159,7 +180,7 @@ function putAllTranslation(req, res, next) {
   }
 
 function deleteTranslation(req, res, next) {
-var requiredFields = ['key', 'trans'];
+var requiredFields = ['key', 'trans'];    // ne pas passer key en require car on le passe dans l'url 
 var requiredFields2 = ['lang_id', 'translation_id', 'value'];
   console.log(checkvalideform(requiredFields, req.body));
   if(checkvalideform(requiredFields, req.body)){
@@ -227,7 +248,7 @@ module.exports = {
   // getAllTranslation:getAllTranslation
 
   /* POST function */
-  postAllTranslation:postAllTranslation
+  postAllTranslation:postAllTranslation,
 
  /*   PUT function */
    putAllTranslation:putAllTranslation,
