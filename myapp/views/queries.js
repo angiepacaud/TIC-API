@@ -79,7 +79,7 @@ function getAllTranslationById(req, res, next) {
 }
 
 function postAllTranslation(req, res, next) {
-var requiredFields = ['key', 'trans'];  // sans trans fct bien*/ 
+var requiredFields = ['key', 'trans'];   
 var requiredFields2 = ['lang_id', 'translation_id', 'value'];
   console.log(checkvalideform(requiredFields, req.body));
   if(checkvalideform(requiredFields, req.body)){
@@ -150,7 +150,7 @@ var requiredFields2 = ['lang_id', 'translation_id', 'value'];
 
 function putAllTranslation(req, res, next) {
   var requiredFields2 = ['lang_id', 'translation_id', 'value'];
-  console.log(checkvalideform(requiredFields, req.body));
+  console.log(checkvalideform(requiredFields2, req.body));
  // if(req.params.lang_id && req.params.translation_id && req.body.value){
  // var requireParams = [req.params.lang_id, req.params.translation_id, req.body.value];
   if(checkvalideform(requiredFields2, req.body.trans)){
@@ -180,38 +180,38 @@ function putAllTranslation(req, res, next) {
   }
 
 function deleteTranslation(req, res, next) {
-var requiredFields = ['key', 'trans'];    // ne pas passer key en require car on le passe dans l'url 
-var requiredFields2 = ['lang_id', 'translation_id', 'value'];
-  console.log(checkvalideform(requiredFields, req.body));
-  if(checkvalideform(requiredFields, req.body)){
-    var query = 'DELETE FROM `translation` WHERE `key `='+req.body.key+ 
+var requiredFields = ['trans'];    // ne pas passer key en require car on le passe dans l'url 
+// var requiredFields2 = ['lang_id', 'translation_id', 'value'];
+//  console.log(checkvalideform(requiredFields, req.body));
+//  if(checkvalideform(requiredFields, req.body)){
+    var query = 'DELETE FROM `translation` WHERE `key` ='+req.body.key+ 
     db.query(query, function (err, rows) {
       console.log(err,rows);
     });
   }
-  if(req.params.lang_id && req.params.translation_id && req.body.value) {
-    var requireParams = [req.params.lang_id, req.params.translation_id, req.body.value];
-    if(checkvalideform(requiredFields2, req.body.trans)) {
-      var query2 = 'DELETE FROM `translation_to_lang` WHERE `translation_id`='+req.body.trans.translation_id+ 
-      db.query(query2, function (err, rows) {
-        console.log(err,rows);
-        res.status(200)
-        .json({
-          status: 'success',
-          data: rows,
-          message: 'Sup translations.'
-        });
-      });
-    }
-  }
-    else {
-      return res.status(400)
-      .json({
-        status: 'error',
-        message: 'BAD request.'
-      });
-    }
-  }
+//  if(req.params.lang_id && req.params.translation_id && req.body.value) {
+//    var requireParams = [req.params.lang_id, req.params.translation_id, req.body.value];
+//    if(checkvalideform(requiredFields2, req.body.trans)) {
+//      var query2 = 'DELETE FROM `translation_to_lang` WHERE `translation_id`='+req.body.trans.translation_id+ 
+//      db.query(query2, function (err, rows) {
+//        console.log(err,rows);
+//        res.status(200)
+//        .json({
+//          status: 'success',
+//          data: rows,
+//          message: 'Sup translations.'
+//        });
+//      });
+//    }
+//  }
+//    else {
+//      return res.status(400)
+//      .json({
+ //       status: 'error',
+ //       message: 'BAD request.'
+ //     });
+ //   }
+ // }
 
 function getDomainAuto(req, res, next) {
   return db.query('select user.username, user.id, user.email, domain.* , lang.* from `user` inner join domain on domain.user_id = `user`.id inner join domain_to_lang on domain_to_lang.domain_id = domain.id inner join lang on lang.id_lang = domain_to_lang.lang_id where domain.id='+ req.params.id, function(err, rows) {
